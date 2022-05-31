@@ -1,4 +1,4 @@
-# Alex's worlde attempt 
+# Alex's worldle attempt 
 
 ## User stories: 
 
