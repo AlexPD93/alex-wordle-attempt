@@ -1,37 +1,59 @@
 // Adding event listener to keyboard press
 let deferredPrompt;
-document.addEventListener("click", rowOneAddLetter);
+document.addEventListener("click", addLetter);
 
 let tileArray = document.querySelectorAll("p");
 
-function rowOneAddLetter(event) {
+function addLetter(event) {
   let letter = event.target.innerHTML;
 
   for (let i = 0; i < tileArray.length; i++) {
     if (tileArray[0].innerHTML === "") {
       tileArray[0].innerHTML = `${letter}`;
-      rowOneAddLetter();
+      addLetter();
     }
     if (tileArray[0].innerHTML !== "" && tileArray[1].innerHTML === "") {
       tileArray[1].innerHTML = `${letter}`;
-      rowOneAddLetter();
+      addLetter();
     }
     if (tileArray[1].innerHTML !== "" && tileArray[2].innerHTML === "") {
       tileArray[2].innerHTML = `${letter}`;
-      rowOneAddLetter();
+      addLetter();
     }
     if (tileArray[2].innerHTML !== "" && tileArray[3].innerHTML === "") {
       tileArray[3].innerHTML = `${letter}`;
-      rowOneAddLetter();
+      addLetter();
     }
     if (tileArray[3].innerHTML !== "" && tileArray[4].innerHTML === "") {
       tileArray[4].innerHTML = `${letter}`;
-      wordCorrect(tileArray);
+      wordCorrectFirstRow(tileArray);
+      addLetter();
+    }
+    if (tileArray[4].innerHTML !== "" && tileArray[5].innerHTML === "") {
+      tileArray[5].innerHTML = `${letter}`;
+      addLetter();
+    }
+    if (tileArray[5].innerHTML !== "" && tileArray[6].innerHTML === "") {
+      tileArray[6].innerHTML = `${letter}`;
+      addLetter();
+    }
+    if (tileArray[6].innerHTML !== "" && tileArray[7].innerHTML === "") {
+      tileArray[7].innerHTML = `${letter}`;
+      addLetter();
+    }
+    if (tileArray[7].innerHTML !== "" && tileArray[8].innerHTML === "") {
+      tileArray[8].innerHTML = `${letter}`;
+      addLetter();
+    }
+    if (tileArray[8].innerHTML !== "" && tileArray[9].innerHTML === "") {
+      tileArray[9].innerHTML = `${letter}`;
+      wordCorrectSecondRow(tileArray);
+      addLetter();
     }
   }
 }
 
-function wordCorrect(arr) {
+function wordCorrectFirstRow(arr) {
   arr.forEach((tile, index) => {
     if (winningWord.includes(tile.innerHTML) && index < 5) {
       tile.style.background = "#6AAA64";
@@ -39,11 +61,20 @@ function wordCorrect(arr) {
       tile.style.background = "#787C7E";
     }
   });
-  /*if (winningWord.includes(tile[0].innerHTML)) {
-    tile[0].style.background = "#6AAA64";
-  } else if (!winningWord.includes(tile[0].innerHTML)) {
-    tile[0].style.background = "#787C7E";
-  }*/
+}
+
+function wordCorrectSecondRow(arr) {
+  arr.forEach((tile, index) => {
+    if (winningWord.includes(tile.innerHTML) && index > 4 && index < 10) {
+      tile.style.background = "#6AAA64";
+    } else if (
+      !winningWord.includes(tile.innerHTML) &&
+      index > 4 &&
+      index < 10
+    ) {
+      tile.style.background = "#787C7E";
+    }
+  });
 }
 
 // Making an array from all buttons so I can access the innerHTML of each button and style later.
