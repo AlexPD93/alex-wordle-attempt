@@ -1,5 +1,48 @@
 // Adding event listener to keyboard press
-document.addEventListener("keydown", logKey);
+let deferredPrompt;
+document.addEventListener("click", rowOneAddLetter);
+
+let tileArray = document.querySelectorAll("p");
+
+function rowOneAddLetter(event) {
+  let letter = event.target.innerHTML;
+
+  for (let i = 0; i < tileArray.length; i++) {
+    if (tileArray[0].innerHTML === "") {
+      tileArray[0].innerHTML = `${letter}`;
+      wordCorrect(letter);
+      rowOneAddLetter();
+    }
+    if (tileArray[0].innerHTML !== "" && tileArray[1].innerHTML === "") {
+      tileArray[1].innerHTML = `${letter}`;
+      wordCorrect(letter);
+      rowOneAddLetter();
+    }
+    if (tileArray[1].innerHTML !== "" && tileArray[2].innerHTML === "") {
+      tileArray[2].innerHTML = `${letter}`;
+      wordCorrect(letter);
+      rowOneAddLetter();
+    }
+    if (tileArray[2].innerHTML !== "" && tileArray[3].innerHTML === "") {
+      tileArray[3].innerHTML = `${letter}`;
+      wordCorrect(letter);
+      rowOneAddLetter();
+    }
+    if (tileArray[3].innerHTML !== "" && tileArray[4].innerHTML === "") {
+      tileArray[4].innerHTML = `${letter}`;
+      wordCorrect(letter);
+      rowTwoAddLetter();
+    }
+  }
+}
+
+function wordCorrect(letter) {
+  let wordArray = [];
+  wordArray.push(letter);
+  if (winningWord.includes(letter)) {
+    console.log("hello");
+  }
+}
 
 // Making an array from all buttons so I can access the innerHTML of each button and style later.
 let keyArray = Array.from(document.querySelectorAll("button"));
@@ -8,7 +51,7 @@ let buttonValue = keyArray.map((button) => {
 });
 
 //Function that runs when a key is pressed
-function logKey(e) {
+/*function logKey(e) {
   //Iterate over the html array to find if the key typed is the same as the html of a button and to check if the word has that letter.
   buttonValue.forEach((letter) => {
     if (letter === e.key && winningWord.includes(letter)) {
@@ -29,13 +72,6 @@ function logKey(e) {
       });
     }
   });
-}
-
-let rowArray = Array.from(document.querySelectorAll("p"));
-
-function addTileLetter(letter) {
-  let rowOne = rowArray.slice(0, 5);
-  rowOne[0].innerHTML = `${letter}`;
-}
+}*/
 
 let winningWord = "spain";
