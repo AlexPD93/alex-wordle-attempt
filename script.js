@@ -10,38 +10,40 @@ function rowOneAddLetter(event) {
   for (let i = 0; i < tileArray.length; i++) {
     if (tileArray[0].innerHTML === "") {
       tileArray[0].innerHTML = `${letter}`;
-      wordCorrect(letter);
       rowOneAddLetter();
     }
     if (tileArray[0].innerHTML !== "" && tileArray[1].innerHTML === "") {
       tileArray[1].innerHTML = `${letter}`;
-      wordCorrect(letter);
       rowOneAddLetter();
     }
     if (tileArray[1].innerHTML !== "" && tileArray[2].innerHTML === "") {
       tileArray[2].innerHTML = `${letter}`;
-      wordCorrect(letter);
       rowOneAddLetter();
     }
     if (tileArray[2].innerHTML !== "" && tileArray[3].innerHTML === "") {
       tileArray[3].innerHTML = `${letter}`;
-      wordCorrect(letter);
       rowOneAddLetter();
     }
     if (tileArray[3].innerHTML !== "" && tileArray[4].innerHTML === "") {
       tileArray[4].innerHTML = `${letter}`;
-      wordCorrect(letter);
-      rowTwoAddLetter();
+      wordCorrect(tileArray);
     }
   }
 }
 
-function wordCorrect(letter) {
-  let wordArray = [];
-  wordArray.push(letter);
-  if (winningWord.includes(letter)) {
-    console.log("hello");
-  }
+function wordCorrect(arr) {
+  arr.forEach((tile, index) => {
+    if (winningWord.includes(tile.innerHTML) && index < 5) {
+      tile.style.background = "#6AAA64";
+    } else if (!winningWord.includes(tile.innerHTML) && index < 5) {
+      tile.style.background = "#787C7E";
+    }
+  });
+  /*if (winningWord.includes(tile[0].innerHTML)) {
+    tile[0].style.background = "#6AAA64";
+  } else if (!winningWord.includes(tile[0].innerHTML)) {
+    tile[0].style.background = "#787C7E";
+  }*/
 }
 
 // Making an array from all buttons so I can access the innerHTML of each button and style later.
