@@ -32,9 +32,10 @@ function logKey(e) {
 }
 
 let rowArray = Array.from(document.querySelectorAll("p"));
-let rowOne = rowArray.slice(0, 5);
-console.log(rowOne);
 
-function addTileLetter(letter) {}
+function addTileLetter(letter) {
+  let rowOne = rowArray.slice(0, 5);
+  rowOne[0].innerHTML = `${letter}`;
+}
 
 let winningWord = "spain";
