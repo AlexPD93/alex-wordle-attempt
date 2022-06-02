@@ -16,6 +16,7 @@ function logKey(e) {
       keyArray.forEach((buttons) => {
         if (buttons.innerHTML === letter) {
           buttons.style.background = "green";
+          addTileLetter(letter);
         }
       });
     } // If the letter and key pressed are the same but the answer doesn't have that letter. Then that letter's tile turns grey.
@@ -23,10 +24,17 @@ function logKey(e) {
       keyArray.forEach((buttons) => {
         if (buttons.innerHTML === letter) {
           buttons.style.background = "grey";
+          addTileLetter(letter);
         }
       });
     }
   });
 }
+
+let rowArray = Array.from(document.querySelectorAll("p"));
+let rowOne = rowArray.slice(0, 5);
+console.log(rowOne);
+
+function addTileLetter(letter) {}
 
 let winningWord = "spain";
