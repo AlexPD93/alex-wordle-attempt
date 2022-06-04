@@ -1,6 +1,6 @@
 let green = "#6AAA64";
 
-// Adding event listener to button press
+// Add event listener to button press
 let buttons = Array.from(document.querySelectorAll("button"));
 buttons.forEach((button) => {
   button.addEventListener("click", addLetter);
@@ -119,33 +119,45 @@ function wordCorrectSixthRow(arr) {
 }
 
 // Making an array from all buttons so I can access the innerHTML of each button and style later.
-/*let keyArray = Array.from(document.querySelectorAll("button"));
+document.addEventListener("keydown", logKey);
+let keyArray = Array.from(document.querySelectorAll("button"));
 let buttonValue = keyArray.map((button) => {
   return button.innerHTML;
 });
 
 //Function that runs when a key is pressed
-/*function logKey(e) {
-  //Iterate over the html array to find if the key typed is the same as the html of a button and to check if the word has that letter.
-  buttonValue.forEach((letter) => {
-    if (letter === e.key && winningWord.includes(letter)) {
-      // Iterate over the buttons to check that the html and the letter match. If so change the background to green.
-      keyArray.forEach((buttons) => {
-        if (buttons.innerHTML === letter) {
-          buttons.style.background = "green";
-          addTileLetter(letter);
-        }
-      });
-    } // If the letter and key pressed are the same but the answer doesn't have that letter. Then that letter's tile turns grey.
-    else if (letter === e.key && winningWord.includes(letter) === false) {
-      keyArray.forEach((buttons) => {
-        if (buttons.innerHTML === letter) {
-          buttons.style.background = "grey";
-          addTileLetter(letter);
-        }
-      });
+function logKey(e) {
+  let letter = e.key;
+  let keyCode = e.keyCode;
+  console.log(keyCode);
+
+  for (let i = 0; i < tileArray.length; i++) {
+    if (
+      tileArray[i].innerHTML === "" &&
+      letter !== "Enter" &&
+      letter !== "Backspace" &&
+      keyCode >= 65 &&
+      keyCode <= 90
+    ) {
+      tileArray[i].innerHTML = `${letter}`;
+      count++;
+      if (count === 6 && letter === "Enter") {
+        console.log(count);
+        wordCorrectFirstRow(tileArray);
+      } else if (count === 10 && letter === "Enter") {
+        wordCorrectSecondRow(tileArray);
+      } else if (count === 15) {
+        wordCorrectThirdRow(tileArray);
+      } else if (count === 20) {
+        wordCorrectFourthRow(tileArray);
+      } else if (count === 25) {
+        wordCorrectFifthRow(tileArray);
+      } else if (count === 30) {
+        wordCorrectSixthRow(tileArray);
+      }
+      return;
     }
-  });
-}*/
+  }
+}
 
 let winningWord = "spain";
