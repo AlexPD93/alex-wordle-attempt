@@ -1,17 +1,22 @@
-let green = "#6AAA64";
-let orange = "#C9B458";
-let white = "#787C7E";
+//Global variables
+const green = "#6AAA64";
+const orange = "#C9B458";
+const grey = "#787C7E";
+let count = 0;
+let winningWord = "spain";
+let winningWordArray = Array.from(winningWord).join("");
 
-// Add event listener to button press
-let buttons = Array.from(document.querySelectorAll("button"));
+// Grabbing elements
+const buttons = Array.from(document.querySelectorAll("button"));
+const tileArray = document.querySelectorAll("p");
+
+// Event listeners
 buttons.forEach((button) => {
   button.addEventListener("click", addLetter);
 });
+document.addEventListener("keydown", logKey);
 
-let tileArray = document.querySelectorAll("p");
-let count = 0;
-
-// Getting the letter clicked on and looping through the array to assign the innerHTML as the letter of each tile.
+// Getting the button clicked on and looping through the array to assign the innerHTML as the letter of each tile.
 
 function addLetter(event) {
   let letter = event.target.innerHTML;
@@ -25,40 +30,41 @@ function addLetter(event) {
   }
 }
 
-function wordCorrectFirstRow(letter) {
-  if (winningWord.includes(letter)) {
-    console.log(letter);
+function wordCorrect(letter) {
+  for (let i = 0; i < winningWordArray.length; i++) {
+    if (letter === winningWordArray[i]) {
+      for (let j = 0; j < tileArray.length; j++) {
+        console.log(winningWordArray[j], tileArray[j].innerHTML);
+        if (winningWordArray[j] === tileArray[j].innerHTML) {
+          tileArray[j].style.background = green;
+        } else if (tileArray[j].innerHTML === letter) {
+          tileArray[j].style.background = orange;
+        }
+      }
+    } else if (!winningWordArray.includes(letter)) {
+      for (let k = 0; k < tileArray.length; k++) {
+        if (tileArray[k].innerHTML === letter) {
+          tileArray[k].style.background = grey;
+        }
+      }
+    }
   }
 }
-/*arr.forEach((tile, index) => {
-    if (winningWord.includes(tile.innerHTML) && index < 5) {
-      tile.style.background = "#C9B458";
-    } else if (!winningWord.includes(tile.innerHTML) && index < 5) {
-      tile.style.background = "#787C7E";
-    }
-  });*/
-
-// Making an array from all buttons so I can access the innerHTML of each button and style later.
-document.addEventListener("keydown", logKey);
-let keyArray = Array.from(document.querySelectorAll("button"));
-let buttonValue = keyArray.map((button) => {
-  return button.innerHTML;
-});
 
 //Function for when enter is pressed
 
 function pressEnter(letter) {
   // Check count is divisible by 5 run word correct function
   if (count % 5 === 0) {
-    wordCorrectFirstRow(letter);
-  } else console.log("error");
+    wordCorrect(letter);
+  }
 }
 
-function pressBackspace() {
+function pressBackspace(letter) {
   count--;
-  console.log(count);
 }
 
+let letters = [];
 //Function that runs when a letter is pressed
 function logKey(e) {
   let letter = e.key;
@@ -70,13 +76,12 @@ function logKey(e) {
       count++;
       return;
     }
-  }
-  if (keyCode === 13) {
-    pressEnter();
-  }
-  if (keyCode === 8) {
-    pressBackspace();
+    if (keyCode === 13) {
+      pressEnter(tileArray[i].innerHTML);
+    }
+    if (keyCode === 8) {
+      pressBackspace();
+      return;
+    }
   }
 }
-
-let winningWord = "spain";
