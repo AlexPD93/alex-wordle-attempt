@@ -1,4 +1,6 @@
-// Adding event listener to keyboard press
+let green = "#6AAA64";
+
+// Adding event listener to button press
 let buttons = Array.from(document.querySelectorAll("button"));
 buttons.forEach((button) => {
   button.addEventListener("click", addLetter);
@@ -6,6 +8,9 @@ buttons.forEach((button) => {
 
 let tileArray = document.querySelectorAll("p");
 let count = 0;
+let currentGuess = [];
+
+// Getting the letter clicked on and looping through the array to assign the innerHTML as the letter of each tile.
 
 function addLetter(event) {
   let letter = event.target.innerHTML;
