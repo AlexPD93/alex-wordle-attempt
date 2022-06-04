@@ -30,11 +30,10 @@ function addLetter(event) {
   }
 }
 
-function wordCorrect(letter) {
+function wordCorrectFirstRow(letter) {
   for (let i = 0; i < winningWordArray.length; i++) {
     if (letter === winningWordArray[i]) {
       for (let j = 0; j < tileArray.length; j++) {
-        console.log(winningWordArray[j], tileArray[j].innerHTML);
         if (winningWordArray[j] === tileArray[j].innerHTML) {
           tileArray[j].style.background = green;
         } else if (tileArray[j].innerHTML === letter) {
@@ -51,12 +50,28 @@ function wordCorrect(letter) {
   }
 }
 
+function wordCorrectSecondRow(letter) {
+  for (let i = 0; i < winningWordArray.length; i++) {
+    for (let j = 5; j < tileArray.length; j++) {
+      if (
+        letter === winningWordArray[i] &&
+        tileArray[j].innerHTML === winningWordArray[i]
+      ) {
+        tileArray[j].style.background = green;
+      }
+    }
+  }
+}
+
 //Function for when enter is pressed
 
 function pressEnter(letter) {
   // Check count is divisible by 5 run word correct function
-  if (count % 5 === 0) {
-    wordCorrect(letter);
+  if (count === 5) {
+    wordCorrectFirstRow(letter);
+  }
+  if (count === 10) {
+    wordCorrectSecondRow(letter);
   }
 }
 
