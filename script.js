@@ -1,4 +1,6 @@
 let green = "#6AAA64";
+let orange = "#C9B458";
+let white = "#787C7E";
 
 // Add event listener to button press
 let buttons = Array.from(document.querySelectorAll("button"));
@@ -8,7 +10,6 @@ buttons.forEach((button) => {
 
 let tileArray = document.querySelectorAll("p");
 let count = 0;
-let currentGuess = [];
 
 // Getting the letter clicked on and looping through the array to assign the innerHTML as the letter of each tile.
 
@@ -19,35 +20,23 @@ function addLetter(event) {
     if (tileArray[i].innerHTML === "") {
       tileArray[i].innerHTML = `${letter}`;
       count++;
-      if (count === 5) {
-        wordCorrectFirstRow(tileArray);
-      } else if (count === 10) {
-        wordCorrectSecondRow(tileArray);
-      } else if (count === 15) {
-        wordCorrectThirdRow(tileArray);
-      } else if (count === 20) {
-        wordCorrectFourthRow(tileArray);
-      } else if (count === 25) {
-        wordCorrectFifthRow(tileArray);
-      } else if (count === 30) {
-        wordCorrectSixthRow(tileArray);
-      }
       return;
     }
   }
-  wordCorrectFirstRow(tileArray);
 }
 
 function wordCorrectFirstRow(letter) {
-  console.log(letter);
-  /*arr.forEach((tile, index) => {
+  if (winningWord.includes(letter)) {
+    console.log(letter);
+  }
+}
+/*arr.forEach((tile, index) => {
     if (winningWord.includes(tile.innerHTML) && index < 5) {
       tile.style.background = "#C9B458";
     } else if (!winningWord.includes(tile.innerHTML) && index < 5) {
       tile.style.background = "#787C7E";
     }
   });*/
-}
 
 // Making an array from all buttons so I can access the innerHTML of each button and style later.
 document.addEventListener("keydown", logKey);
@@ -65,6 +54,11 @@ function pressEnter(letter) {
   } else console.log("error");
 }
 
+function pressBackspace() {
+  count--;
+  console.log(count);
+}
+
 //Function that runs when a letter is pressed
 function logKey(e) {
   let letter = e.key;
@@ -76,12 +70,12 @@ function logKey(e) {
       count++;
       return;
     }
-    if (keyCode === 13) {
-      pressEnter(tileArray[i].innerHTML);
-    }
-    if (keyCode === 8) {
-      backSpace();
-    }
+  }
+  if (keyCode === 13) {
+    pressEnter();
+  }
+  if (keyCode === 8) {
+    pressBackspace();
   }
 }
 
