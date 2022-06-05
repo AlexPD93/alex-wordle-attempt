@@ -168,5 +168,10 @@ const countryList = [
 
 const randomCountry =
   countryList[Math.floor(Math.random() * countryList.length)];
-
-export default randomCountry;
+let countryFive = "";
+if (randomCountry.length === 5) {
+  countryFive = randomCountry;
+} else {
+  console.log("Refresh page");
+}
+export default countryFive;

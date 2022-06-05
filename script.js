@@ -1,12 +1,13 @@
-import randomCountry from "./countries.js";
-console.log(randomCountry);
+import countryFive from "./countries.js";
+
 //Global variables
 
 const green = "#6AAA64";
 const orange = "#C9B458";
 const grey = "#787C7E";
 let count = 0;
-let winningWord = "spain";
+let winningWord = countryFive.toLowerCase();
+console.log(winningWord);
 let winningWordArray = Array.from(winningWord);
 
 // Grabbing elements
