@@ -1,4 +1,7 @@
+import randomCountry from "./countries.js";
+console.log(randomCountry);
 //Global variables
+
 const green = "#6AAA64";
 const orange = "#C9B458";
 const grey = "#787C7E";
