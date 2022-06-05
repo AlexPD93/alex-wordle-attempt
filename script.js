@@ -4,7 +4,7 @@ const orange = "#C9B458";
 const grey = "#787C7E";
 let count = 0;
 let winningWord = "spain";
-let winningWordArray = Array.from(winningWord).join("");
+let winningWordArray = Array.from(winningWord);
 
 // Grabbing elements
 const buttons = Array.from(document.querySelectorAll("button"));
@@ -30,48 +30,55 @@ function addLetter(event) {
   }
 }
 
-function wordCorrectFirstRow(letter) {
-  for (let i = 0; i < winningWordArray.length; i++) {
-    if (letter === winningWordArray[i]) {
-      for (let j = 0; j < tileArray.length; j++) {
-        if (winningWordArray[j] === tileArray[j].innerHTML) {
-          tileArray[j].style.background = green;
-        } else if (tileArray[j].innerHTML === letter) {
-          tileArray[j].style.background = orange;
-        }
-      }
-    } else if (!winningWordArray.includes(letter)) {
-      for (let k = 0; k < tileArray.length; k++) {
-        if (tileArray[k].innerHTML === letter) {
-          tileArray[k].style.background = grey;
-        }
-      }
-    }
-  }
-}
-
-function wordCorrectSecondRow(letter) {
-  for (let i = 0; i < winningWordArray.length; i++) {
-    for (let j = 5; j < tileArray.length; j++) {
-      if (
-        letter === winningWordArray[i] &&
-        tileArray[j].innerHTML === winningWordArray[i]
-      ) {
-        tileArray[j].style.background = green;
-      }
+function checkCorrectLetters(indexIncrement, start, end) {
+  letterArray = letterArray.slice(start, end);
+  for (let i = 0; i < 5; i++) {
+    if (letterArray[i] === winningWordArray[i]) {
+      tileArray[i + indexIncrement].style.background = green;
+    } else if (winningWord.includes(letterArray[i])) {
+      tileArray[i + indexIncrement].style.background = orange;
+    } else {
+      tileArray[i + indexIncrement].style.background = grey;
     }
   }
 }
 
 //Function for when enter is pressed
 
-function pressEnter(letter) {
+function pressEnter() {
   // Check count is divisible by 5 run word correct function
-  if (count === 5) {
-    wordCorrectFirstRow(letter);
+  // Three things that change are: Start and end of slice and tile index increment
+  let indexIncrement = count - winningWord.length;
+  let start = 0;
+  let end = 5;
+
+  if (count === winningWord.length) {
+    checkCorrectLetters(indexIncrement, start, end);
   }
-  if (count === 10) {
-    wordCorrectSecondRow(letter);
+  if (count === winningWord.length * 2) {
+    start = winningWord.length + start;
+    end = winningWord.length + end;
+    checkCorrectLetters(indexIncrement, start, end);
+  }
+  if (count === winningWord.length * 3) {
+    start = winningWord.length + start;
+    end = winningWord.length + end;
+    checkCorrectLetters(indexIncrement, start, end);
+  }
+  if (count === winningWord.length * 4) {
+    start = winningWord.length + start;
+    end = winningWord.length + end;
+    checkCorrectLetters(indexIncrement, start, end);
+  }
+  if (count === winningWord.length * 5) {
+    start = winningWord.length + start;
+    end = winningWord.length + end;
+    checkCorrectLetters(indexIncrement, start, end);
+  }
+  if (count === winningWord.length * 6) {
+    start = winningWord.length + start;
+    end = winningWord.length + end;
+    checkCorrectLetters(indexIncrement, start, end);
   }
 }
 
@@ -79,8 +86,8 @@ function pressBackspace(letter) {
   count--;
 }
 
-let letters = [];
 //Function that runs when a letter is pressed
+let letterArray = [];
 function logKey(e) {
   let letter = e.key;
   let keyCode = e.keyCode;
@@ -88,15 +95,17 @@ function logKey(e) {
   for (let i = 0; i < tileArray.length; i++) {
     if (tileArray[i].innerHTML === "" && keyCode >= 65 && keyCode <= 90) {
       tileArray[i].innerHTML = `${letter}`;
+      letterArray.push(tileArray[i].innerHTML);
       count++;
       return;
     }
-    if (keyCode === 13) {
-      pressEnter(tileArray[i].innerHTML);
-    }
-    if (keyCode === 8) {
-      pressBackspace();
-      return;
-    }
+  }
+  if (keyCode === 13) {
+    pressEnter();
+  }
+  if (keyCode === 8) {
+    pressBackspace();
+    return;
   }
 }
+//makeRows(6, winningWord.length);
