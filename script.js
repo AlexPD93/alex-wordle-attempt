@@ -82,7 +82,8 @@ function pressEnter() {
   }
 }
 
-function pressBackspace(letter) {
+function pressBackspace() {
+  tileArray[count - 1].innerHTML = "";
   count--;
 }
 
