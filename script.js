@@ -5,6 +5,7 @@ const green = "#6AAA64";
 const orange = "#C9B458";
 const grey = "#787C7E";
 const white = "#ffffff";
+const borderGrey = "#878A8C";
 let count = 0;
 let winningWord = randomCountry.toLowerCase();
 console.log(winningWord);
@@ -37,7 +38,6 @@ makeRows(6, winningWord.length);
 
 function addLetter(event) {
   let letter = event.target.innerHTML;
-  console.log(letter);
 
   if (letter === "enter") {
     pressEnter();
@@ -52,6 +52,8 @@ function addLetter(event) {
   for (let i = 0; i < tileArray.length; i++) {
     if (tileArray[i].innerHTML === "") {
       tileArray[i].innerHTML = `${letter}`;
+      letterArray.push(tileArray[i].innerHTML);
+      tileArray[i].style.border = `2px solid ${borderGrey}`;
       count++;
       return;
     }
@@ -128,6 +130,7 @@ function logKey(e) {
   for (let i = 0; i < tileArray.length; i++) {
     if (tileArray[i].innerHTML === "" && keyCode >= 65 && keyCode <= 90) {
       tileArray[i].innerHTML = `${letter}`;
+      tileArray[i].style.border = `2px solid ${borderGrey}`;
       letterArray.push(tileArray[i].innerHTML);
       count++;
       return;
