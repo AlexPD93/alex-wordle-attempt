@@ -2,6 +2,7 @@
 
 ## Instructions:
 Use your keyboard or click on the buttons to try and guess today's worldle. As it is **worldle** not *wordle* the word is a country 🗺️. 
+
 The country list is comprised of countries that don't have a space in them. For example *Papua New Guinea* isn't in the list.
 
 ## User stories: 
