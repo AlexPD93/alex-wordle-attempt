@@ -11,12 +11,13 @@ The country list is comprised of countries that don't have a space in them. For 
 
 The user should be able to:
 
-- [ ] Visit the website on a publicly accessible domain name. 
+- [x] Visit the website on a publicly accessible domain name. 
 - [ ] Browse the game on mobile, tablet and desktop devices.
 - [ ] See the rules to the game
-- [ ] See the responsive tile rid. The rows are how many attempts the user has to guess. The columns are how many letters the word has.
-- [ ] See a keyboard on the screen whose buttons they can press to input into the grid. 
-- [ ] Press a key on a keyboard and that key's value to be inputted into the grid. 
+- [x] See the responsive tile rid. The rows are how many attempts the user has to guess. The columns are how many letters the word has.
+- [x] See a keyboard on the screen whose buttons they can press to input into the grid. 
+- [x] Press a key on a keyboard. The value of that key is then inputted into the grid. 
+- [x] Click or press enter to submit their guess.
 
 My attempt can be seen [here](https://alexpd93.github.io/alex-wordle-attempt/)
 
