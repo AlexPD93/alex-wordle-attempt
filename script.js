@@ -37,7 +37,18 @@ makeRows(6, winningWord.length);
 
 function addLetter(event) {
   let letter = event.target.innerHTML;
-  console.log(event);
+  console.log(letter);
+
+  if (letter === "enter") {
+    pressEnter();
+    return;
+  }
+
+  if (letter === "Backspace") {
+    pressBackspace();
+    return;
+  }
+
   for (let i = 0; i < tileArray.length; i++) {
     if (tileArray[i].innerHTML === "") {
       tileArray[i].innerHTML = `${letter}`;
