@@ -4,8 +4,9 @@ import randomCountry from "./countries.js";
 const green = "#6AAA64";
 const orange = "#C9B458";
 const grey = "#787C7E";
+const borderGreyDark = "#878A8C";
+const borderGreyLight = "#d3d6da";
 const white = "#ffffff";
-const borderGrey = "#878A8C";
 let count = 0;
 let winningWord = randomCountry.toLowerCase();
 console.log(winningWord);
@@ -53,7 +54,7 @@ function addLetter(event) {
     if (tileArray[i].innerHTML === "") {
       tileArray[i].innerHTML = `${letter}`;
       letterArray.push(tileArray[i].innerHTML);
-      tileArray[i].style.border = `2px solid ${borderGrey}`;
+      tileArray[i].style.border = `2px solid ${borderGreyDark}`;
       count++;
       return;
     }
@@ -118,6 +119,7 @@ function pressEnter() {
 
 function pressBackspace() {
   tileArray[count - 1].innerHTML = "";
+  tileArray[count - 1].style.border = `1.5px solid ${borderGreyLight}`;
   count--;
 }
 
@@ -130,7 +132,7 @@ function logKey(e) {
   for (let i = 0; i < tileArray.length; i++) {
     if (tileArray[i].innerHTML === "" && keyCode >= 65 && keyCode <= 90) {
       tileArray[i].innerHTML = `${letter}`;
-      tileArray[i].style.border = `2px solid ${borderGrey}`;
+      tileArray[i].style.border = `2px solid ${borderGreyDark}`;
       letterArray.push(tileArray[i].innerHTML);
       count++;
       return;
