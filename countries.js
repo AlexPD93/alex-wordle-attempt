@@ -130,7 +130,7 @@ const countryList = [
   "Qatar",
   "Romania",
   "Rwanda",
-  "Réunion",
+  "Reunion",
   "Samoa",
   "Senegal",
   "Serbia",
@@ -168,10 +168,5 @@ const countryList = [
 
 const randomCountry =
   countryList[Math.floor(Math.random() * countryList.length)];
-let countryFive = "";
-if (randomCountry.length === 5) {
-  countryFive = randomCountry;
-} else {
-  console.log("Refresh page");
-}
-export default countryFive;
+
+export default randomCountry;

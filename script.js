@@ -1,18 +1,30 @@
-import countryFive from "./countries.js";
+import randomCountry from "./countries.js";
 
 //Global variables
-
 const green = "#6AAA64";
 const orange = "#C9B458";
 const grey = "#787C7E";
 let count = 0;
-let winningWord = countryFive.toLowerCase();
+let winningWord = randomCountry.toLowerCase();
 console.log(winningWord);
 let winningWordArray = Array.from(winningWord);
 
 // Grabbing elements
 const buttons = Array.from(document.querySelectorAll("button"));
-const tileArray = document.querySelectorAll("p");
+const tileArray = document.getElementsByClassName("tile");
+const container = document.getElementById("board");
+
+//Function to make grid
+function makeRows(rows, cols) {
+  container.style.setProperty("--grid-rows", rows);
+  container.style.setProperty("--grid-cols", cols);
+  for (let c = 0; c < rows * cols; c++) {
+    let cell = document.createElement("p");
+    container.appendChild(cell).className = "tile";
+  }
+}
+
+makeRows(6, winningWord.length);
 
 // Event listeners
 buttons.forEach((button) => {
@@ -36,12 +48,12 @@ function addLetter(event) {
 
 function checkCorrectLetters(indexIncrement, start, end) {
   letterArray = letterArray.slice(start, end);
-  for (let i = 0; i < 5; i++) {
+  for (let i = 0; i < winningWord.length; i++) {
     if (letterArray[i] === winningWordArray[i]) {
       tileArray[i + indexIncrement].style.background = green;
     } else if (winningWord.includes(letterArray[i])) {
       tileArray[i + indexIncrement].style.background = orange;
-    } else {
+    } else if (!winningWord.includes(letterArray[i])) {
       tileArray[i + indexIncrement].style.background = grey;
     }
   }
@@ -54,7 +66,7 @@ function pressEnter() {
   // Three things that change are: Start and end of slice and tile index increment
   let indexIncrement = count - winningWord.length;
   let start = 0;
-  let end = 5;
+  let end = winningWord.length;
 
   if (count === winningWord.length) {
     checkCorrectLetters(indexIncrement, start, end);
@@ -113,4 +125,3 @@ function logKey(e) {
     return;
   }
 }
-//makeRows(6, winningWord.length);

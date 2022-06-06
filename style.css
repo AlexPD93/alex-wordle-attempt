@@ -1,3 +1,8 @@
+:root {
+  --grid-cols: 1;
+  --grid-rows: 1;
+}
+
 body {
   height: 100%;
   margin: 0;
@@ -25,10 +30,10 @@ h1 {
   overflow: hidden;
 }
 
-.board {
+#board {
   display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  grid-template-rows: repeat(6, 1fr);
+  grid-template-rows: repeat(var(--grid-rows), 1fr);
+  grid-template-columns: repeat(var(--grid-cols), 1fr);
   grid-gap: 5px;
   padding: 10px;
   box-sizing: border-box;
