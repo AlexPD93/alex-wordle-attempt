@@ -4,6 +4,7 @@ import randomCountry from "./countries.js";
 const green = "#6AAA64";
 const orange = "#C9B458";
 const grey = "#787C7E";
+const white = "#ffffff";
 let count = 0;
 let winningWord = randomCountry.toLowerCase();
 console.log(winningWord);
@@ -13,6 +14,12 @@ let winningWordArray = Array.from(winningWord);
 const buttons = Array.from(document.querySelectorAll("button"));
 const tileArray = document.getElementsByClassName("tile");
 const container = document.getElementById("board");
+
+// Event listeners
+buttons.forEach((button) => {
+  button.addEventListener("click", addLetter);
+});
+document.addEventListener("keydown", logKey);
 
 //Function to make grid
 function makeRows(rows, cols) {
@@ -26,13 +33,7 @@ function makeRows(rows, cols) {
 
 makeRows(6, winningWord.length);
 
-// Event listeners
-buttons.forEach((button) => {
-  button.addEventListener("click", addLetter);
-});
-document.addEventListener("keydown", logKey);
-
-// Getting the button clicked on and looping through the array to assign the innerHTML as the letter of each tile.
+// Targeting the button clicked on and looping through the array to assign the innerHTML as the letter of each tile.
 
 function addLetter(event) {
   let letter = event.target.innerHTML;
@@ -48,13 +49,17 @@ function addLetter(event) {
 
 function checkCorrectLetters(indexIncrement, start, end) {
   letterArray = letterArray.slice(start, end);
+
   for (let i = 0; i < winningWord.length; i++) {
     if (letterArray[i] === winningWordArray[i]) {
       tileArray[i + indexIncrement].style.background = green;
+      tileArray[i + indexIncrement].style.color = white;
     } else if (winningWord.includes(letterArray[i])) {
       tileArray[i + indexIncrement].style.background = orange;
+      tileArray[i + indexIncrement].style.color = white;
     } else if (!winningWord.includes(letterArray[i])) {
       tileArray[i + indexIncrement].style.background = grey;
+      tileArray[i + indexIncrement].style.color = white;
     }
   }
 }
@@ -117,8 +122,10 @@ function logKey(e) {
       return;
     }
   }
+
   if (keyCode === 13) {
     pressEnter();
+    return;
   }
   if (keyCode === 8) {
     pressBackspace();

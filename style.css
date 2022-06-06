@@ -54,23 +54,20 @@ h1 {
   border: 1.5px solid #d3d6da;
 }
 
-.keyboard {
-  margin: 0 8px;
-  user-select: none;
-  height: 200px;
-  max-width: 50%;
-  margin-left: auto;
-  margin-right: auto;
+#keyboardCont {
+  margin: 1rem 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex-wrap: wrap;
 }
 
-.row {
+#keyboard-cont div {
   display: flex;
-  width: 100%;
-  height: 3.5rem;
-  margin: 0 auto 8px;
-  touch-action: manipulation;
-  justify-content: center;
-  column-gap: 0.2rem;
+}
+
+.second-row {
+  margin: 0.5rem 0;
 }
 
 button {
@@ -78,15 +75,13 @@ button {
   font-weight: bold;
   border: 0;
   padding: 1rem;
-  margin: 0 2px 0 0;
-  height: 58px;
+  margin: 0 2px;
   border-radius: 4px;
   cursor: pointer;
   user-select: none;
   background-color: #d3d6da;
   color: black;
   flex: 1;
-  display: flex;
   justify-content: center;
   align-items: center;
   text-transform: uppercase;
