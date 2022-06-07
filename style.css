@@ -89,6 +89,6 @@ button {
 @media (max-width: 520px) {
   button {
     padding: 0.5rem;
-    font-size: 15px;
+    font-size: 12px;
   }
 }
