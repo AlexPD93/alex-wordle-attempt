@@ -121,12 +121,15 @@ function pressBackspace() {
   tileArray[count - 1].innerHTML = "";
   tileArray[count - 1].style.border = `1.5px solid ${borderGreyLight}`;
   tileArray[count - 1].style.background = white;
+  console.log(tileArray[count - 1].innerHTML);
   count--;
+  document.addEventListener("keydown", logKey);
 }
 
 //Function that runs when a letter is pressed
 let letterArray = [];
 function logKey(e) {
+  console.log(e);
   let letter = e.key;
   let keyCode = e.keyCode;
 
