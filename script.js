@@ -120,6 +120,7 @@ function pressEnter() {
 function pressBackspace() {
   tileArray[count - 1].innerHTML = "";
   tileArray[count - 1].style.border = `1.5px solid ${borderGreyLight}`;
+  tileArray[count - 1].style.background = white;
   count--;
 }
 
