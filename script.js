@@ -129,7 +129,6 @@ function pressBackspace() {
 //Function that runs when a letter is pressed
 let letterArray = [];
 function logKey(e) {
-  console.log(e);
   let letter = e.key;
   let keyCode = e.keyCode;
 
