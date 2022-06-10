@@ -18,6 +18,7 @@ The user should be able to:
 - [x] See a keyboard on the screen whose buttons they can press to input into the grid. 
 - [x] Press a key on a keyboard. The value of that key is then inputted into the grid. 
 - [x] Click or press enter to submit their guess.
+- [ ] Be alerted if the word the typed is not in the countries array
 
 My attempt can be seen [here](https://alexpd93.github.io/alex-wordle-attempt/)
 
